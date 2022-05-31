@@ -1,0 +1,38 @@
+<div class="form-group" style="margin-left: 214px;">
+  <button class="btn btn-danger btn-lg btn-block"  (click)="logout()">Logout</button>
+  </div>
+  <div class="container table-data-margin"> 
+   
+
+
+  
+    <!-- <button class="btn btn-primary add-btn" [routerLink]="['add']">Add Employee</button> -->
+    
+    <!-- No data message -->
+    <!-- <p *ngIf="Employee.length <= 0" class="no-data text-center">There is no employee added yet!</p> -->
+  
+    <!-- Employee list -->
+
+    
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">comment</th>
+          <th scope="col">tag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let comment of CommentList">
+          <td><img [src]="imageUrl+comment.image" class="image-title"/></td>
+          <td>{{comment.user_id.full_name}}</td>
+          <td>{{comment.user_id.email}}</td>
+          <td>{{comment.comment}}</td>
+          <td>{{comment.tag}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>

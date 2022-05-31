@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+
+    <div *ngIf="showMessage" class="alert alert-success" role="alert">
+        Moment has been added succesfully
+    </div>
+    
+    <div class="col-md-4 register-employee">
+      <!-- form card register -->
+      <div class="card-body">
+        <form [formGroup]="momentForm" (ngSubmit)="onSubmit()">
+          <div class="form-grouop">
+            <!-- Select File -->
+            <input type="file"   (change)="uploadFile($event)" />
+
+            <!-- Image Preview -->
+            <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+              <img [src]="imageURL" [alt]="momentForm.value.name">
+              
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputName">Comment</label>
+            <input class="form-control" type="text" formControlName="comment" [ngClass]="{ 'is-invalid': submitted && formData.comment.errors }">
+            <!-- error -->
+            <div *ngIf="submitted && formData.comment.errors" class="invalid-feedback" style="color: red;">Comment is required</div>
+           
+          </div>
+
+          <div class="form-group">
+            <label for="inputName">Tag</label>
+            <input class="form-control" type="text" formControlName="tag" [ngClass]="{ 'is-invalid': submitted && formData.tag.errors }">
+            <!-- error -->
+            <div *ngIf="submitted && formData.tag.errors" class="invalid-feedback" style="color: red;">Tag is required</div>
+           
+          </div>
+
+        
+  
+          <div class="form-group" style="margin-top: 14px;">
+            <button class="btn btn-success btn-lg btn-block" type="submit">Submit</button>
+          </div>
+          
+          
+        </form>
+  
+      </div>
+    </div><!-- form card register -->
+  </div>
