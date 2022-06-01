@@ -1,7 +1,7 @@
 // FETCH all Customers
 const express = require('express');
 const app = express();
-
+const fs = require("fs");
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 const store = new MongoDBStore({
@@ -143,9 +143,6 @@ exports.addMoment = async(req, res) => {
             return res.json({status:false,result:{}})
         }
 
-        let myImage = req.file.originalname.split('.');
-        const fileType = myImage[myImage.length-1];
-
         /**For save data */
         const usermoment = new UserMoment({
             image:req.file.filename,
@@ -154,6 +151,24 @@ exports.addMoment = async(req, res) => {
             tag:req.body.tag,
             created_at:new Date()
         });
+
+        // const filename = 'the-file-name'
+        // const fileContent = fs.createWriteStream(req.file.filename)
+
+        // const params = {
+        // Bucket: process.env.AWS_BUCKET_NAME,
+        // Key: `${filename}.jpg`,
+        // Body: "jcvsdhhj"
+        // }
+        // console.log(params);
+
+        // s3.upload(params, (err, data) => {
+        //     if (err) {
+        //         console.log(err);
+        //         res.send(err)
+        //     }
+        //     res.send(data.Location)
+        // })
         
         let saveUserMoment = await usermoment.save();
         if(saveUserMoment == null){
